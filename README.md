@@ -69,17 +69,17 @@ L'application s'ouvre dans le navigateur à l'adresse `http://localhost:8501`.
 
 ### Projection PCA (MNIST complet, 6 000 images)
 
-![Projection PCA](pca.png)
+![Projection PCA](Screenshot%202026-10-24%20225209.png)
 
 ### SVM : vraies classes vs prédictions (erreurs entourées en rouge)
 
-![SVM avant / après](svm.png)
+![SVM avant / après](Screenshot%202026-10-24%20225029.png)
 
 ## Structure du dépôt
 
 - `app.py` : application Streamlit
 - `requirements.txt` : dépendances Python
-- `pca.png`, `svm.png` : captures d'écran de l'application
+- `Screenshot 2026-10-24 225209.png`, `Screenshot 2026-10-24 225029.png` : captures d'écran de l'application
 - `README.md` : ce fichier
 
 ## Limites
