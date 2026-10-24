@@ -1,138 +1,92 @@
-# TP1 : Initiation à Python
-## POO via Python - 2025/2026
-**Préparé par :** Pr. Miloudi Chaymae
+# Machine Learning sur MNIST : application Streamlit interactive
 
----
+> Boîte à outils interactive pour explorer, comparer et comprendre des méthodes de réduction de dimension et de classification sur le dataset MNIST, avec la théorie mathématique et une visualisation « avant / après » pour chaque méthode.
 
-## 📁 Structure des fichiers
+Projet académique réalisé dans le cadre du Master Intelligence Artificielle pour l'Économie Numérique et la Gestion (Faculté des Sciences Juridiques, Économiques et Sociales de Tanger, Université Abdelmalek Essaâdi).
 
-- `exercice1.py` - Manipulation de 3 valeurs entières
-- `exercice2.py` - Résolution d'équation du second degré
-- `exercice3.py` - Agence de location de voitures
-- `exercice4.py` - Saisie sécurisée (nombre positif)
-- `exercice5.py` - Table de multiplication
-- `exercice6.py` - Calcul des bénéfices d'entreprise
-- `tp1_menu.py` - Menu principal pour exécuter tous les exercices
-- `README.md` - Ce fichier
+## Fonctionnalités
 
----
+L'application regroupe **10 techniques** accessibles depuis la barre latérale. Pour chacune : rappel théorique et formules, code correspondant, hyperparamètres réglables en direct, métriques et comparaison avant / après.
 
-## 🚀 Comment utiliser ces fichiers dans VS Code
+| Famille | Méthodes |
+|---|---|
+| Réduction de dimension | PCA, LDA, t-SNE, UMAP |
+| Classification | QDA, SVM, Decision Tree, KNN |
+| Détection d'anomalies | One-Class SVM |
+| Traitement du signal | Compressive Sensing |
 
-### Option 1 : Exécuter un exercice individuel
-1. Ouvrez VS Code
-2. Ouvrez le fichier de l'exercice souhaité (ex: `exercice1.py`)
-3. Appuyez sur **F5** ou cliquez sur le bouton ▶️ "Run Python File"
-4. Suivez les instructions dans le terminal
+### Ce que montre chaque section
 
-### Option 2 : Utiliser le menu principal
-1. Ouvrez le fichier `tp1_menu.py`
-2. Exécutez-le (F5 ou ▶️)
-3. Choisissez l'exercice à exécuter via le menu interactif
+- **PCA** : compression et reconstruction d'images avec *k* composantes, variance expliquée, projection 2D, matrice de confusion d'un KNN entraîné sur la projection.
+- **LDA** : approches de Fisher et bayésienne, comparaison avec et sans *shrinkage*, comparaison PCA (non supervisée) vs LDA (supervisée).
+- **QDA** : frontière quadratique après pré-réduction par PCA, comparaison avec la baseline linéaire LDA, effet de `reg_param`.
+- **t-SNE** et **UMAP** : projection non linéaire vs PCA, réglage de `perplexity`, `n_neighbors` et `min_dist`, évaluation de la qualité de la projection par matrice de confusion.
+- **SVM** : choix du noyau (`rbf`, `linear`, `poly`, `sigmoid`), nombre de vecteurs de support, visualisation de la frontière de décision en 2D, démonstration du *kernel trick*.
+- **One-Class SVM** : apprentissage sur un seul chiffre « normal » puis détection des anomalies.
+- **Decision Tree** : visualisation de l'arbre, importance des pixels, critères `gini` / `entropy` / `log_loss`.
+- **KNN** : vote des *k* plus proches voisins, visualisation du voisinage, courbe d'accuracy en fonction de *k*.
+- **Compressive Sensing** : reconstruction d'images depuis des mesures compressées, comparaison L2 (naïve) et L1 (Lasso dans la base DCT).
 
----
+## Données
 
-## 📝 Description des exercices
+Deux versions de MNIST au choix dans la barre latérale :
 
-### Exercice 1 : Manipulation de 3 valeurs
-- Lire 3 valeurs entières au clavier
-- Calculer et afficher : somme, moyenne, produit
-- Trier et afficher les valeurs en ordre croissant
+| Version | Taille | Source |
+|---|---|---|
+| Digits | 8×8 pixels | `sklearn.datasets.load_digits` (hors ligne, rapide) |
+| MNIST complet | 28×28 pixels | OpenML (`mnist_784`), sous-échantillon de 500 à 10 000 images |
 
-### Exercice 2 : Résolution d'équation
-- Résoudre l'équation : ax² + bx + c = 0
-- Vérifier l'existence de racines réelles
-- Calculer les valeurs des racines si elles existent
-- Utilise la fonction `sqrt()` de la bibliothèque `math`
+Aucun fichier de données n'est à télécharger manuellement : les datasets sont chargés automatiquement et mis en cache.
 
-### Exercice 3 : Location de voitures
-Tarifs disponibles :
-- **Essence** : 150 MAD/jour + 1,20 MAD/km
-- **Diesel** : 220 MAD/jour + 0,70 MAD/km
+## Technologies
 
-Le programme calcule le meilleur choix selon la distance et la durée.
+Python, Streamlit, scikit-learn, UMAP, NumPy, pandas, SciPy, Matplotlib, Seaborn.
 
-### Exercice 4 : Saisie sécurisée
-- Saisie uniquement de nombres positifs
-- Utilise une boucle `while`
-- Continue à demander jusqu'à obtenir un nombre valide
+## Installation et lancement
 
-### Exercice 5 : Table de multiplication
-- Affiche la table de multiplication d'un entier
-- Utilise une boucle `for`
-- Affichage de 1 à 10
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/Fatimarafiai/mnist-ml-streamlit-app.git
+cd mnist-ml-streamlit-app
 
-### Exercice 6 : Bénéfices d'entreprise
-Détermine si l'entreprise réalise :
-- Un **bénéfice** (revenu > coût)
-- Une **perte** (revenu < coût)
-- Le **seuil de rentabilité** (revenu = coût)
+# 2. (Recommandé) créer un environnement virtuel
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS / Linux
 
----
+# 3. Installer les dépendances
+pip install -r requirements.txt
 
-## 💡 Conseils pour VS Code
-
-### Installation de Python
-Si Python n'est pas installé :
-1. Téléchargez Python sur [python.org](https://www.python.org/downloads/)
-2. Cochez "Add Python to PATH" lors de l'installation
-
-### Extension VS Code recommandée
-- **Python** (de Microsoft) : recherchez "Python" dans les extensions (Ctrl+Shift+X)
-
-### Raccourcis utiles
-- **F5** : Exécuter le fichier Python
-- **Ctrl+`** : Ouvrir/fermer le terminal
-- **Ctrl+S** : Sauvegarder le fichier
-
----
-
-## 🎯 Comment tester vos programmes
-
-### Exemples de données de test
-
-**Exercice 1 :**
-```
-Valeurs : 10, 5, 8
-Résultat attendu : Somme=23, Moyenne=7.67, Produit=400, Trié=[5, 8, 10]
+# 4. Lancer l'application
+streamlit run app.py
 ```
 
-**Exercice 2 :**
-```
-a=1, b=-5, c=6
-Résultat attendu : Deux racines (x₁=3, x₂=2)
-```
+L'application s'ouvre dans le navigateur à l'adresse `http://localhost:8501`.
 
-**Exercice 3 :**
-```
-Distance=100 km, Durée=2 jours
-Essence: 150×2 + 1.20×100 = 420 MAD
-Diesel: 220×2 + 0.70×100 = 510 MAD
-Meilleur choix : Essence
-```
+> Prérequis : Python 3.9 ou plus, scikit-learn 1.5 ou plus. Le premier chargement de « MNIST complet » nécessite une connexion internet.
 
-**Exercice 5 :**
-```
-Entier : 7
-Table de 1×7 jusqu'à 10×7
-```
+## Aperçu
 
-**Exercice 6 :**
-```
-Coût unitaire=50, Prix vente=70, Quantité=100
-Bénéfice = (70-50)×100 = 2000 MAD
-```
+### Projection PCA (MNIST complet, 6 000 images)
 
----
+![Projection PCA](pca.png)
 
-## ❓ Aide et support
+### SVM : vraies classes vs prédictions (erreurs entourées en rouge)
 
-Si vous rencontrez des problèmes :
-1. Vérifiez que Python est bien installé : `python --version`
-2. Vérifiez que vous êtes dans le bon dossier
-3. Lisez les messages d'erreur dans le terminal
-4. Vérifiez votre saisie (types de données corrects)
+![SVM avant / après](svm.png)
 
----
+## Structure du dépôt
 
-**Bon courage pour votre TP ! 🎓**
+- `app.py` : application Streamlit
+- `requirements.txt` : dépendances Python
+- `pca.png`, `svm.png` : captures d'écran de l'application
+- `README.md` : ce fichier
+
+## Limites
+
+- Les graphiques en 2D (frontière du SVM, cercle de voisinage du KNN) utilisent une projection PCA à but pédagogique : ils ne représentent pas exactement l'espace de travail réel du modèle, ce qui est précisé dans l'application.
+- Sur de petits échantillons, certaines méthodes (LDA, QDA) sont sensibles au nombre d'images par classe ; l'application propose le *shrinkage* et la régularisation pour y remédier.
+
+## Contact
+
+Fatima Rafiai · fatimarafiai0101@gmail.com · Tanger, Maroc
